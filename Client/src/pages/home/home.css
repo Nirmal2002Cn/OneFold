@@ -1,0 +1,94 @@
+.title{
+    margin-top: 10px;
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+}
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.row {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.img-womens {
+  width: 590px;
+  height: 650px;
+  margin-right: 30px;
+}
+
+.img-mens {
+  width: 590px;
+  height: 650px;
+  
+}
+
+.img-kids {
+  width: 650px;
+  height: 500px;
+}
+
+.img-mom {
+  width: 478px;
+  height: 500px;
+}
+
+.img-home {
+  width: 1282.32px;
+  height: 650px;
+}
+
+
+.category-card {
+  position: relative;
+}
+
+.category-card img {
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+
+  color: white;
+  text-align: center;
+}
+
+.overlay button {
+    width: 315px;
+    height: 57px;
+  background: white;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 10px;
+}
+.overlay button:hover {
+  background: black;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.overlay h2 {
+  margin: 0;
+  font-size: 96px;
+  -webkit-text-stroke: 0.6px black;
+  
+}

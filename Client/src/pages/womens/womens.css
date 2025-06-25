@@ -1,0 +1,7 @@
+.womens-container{
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
