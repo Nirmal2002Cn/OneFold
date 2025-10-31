@@ -13,7 +13,7 @@ function Navbar() {
       <div className='navbar'>
         <div className='logo'>
           <Link to="/">
-            <img className='onefold' src="logo.png" alt="logo" />
+            <img className='onefold' src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399233/logo_wyeh36.png" alt="logo" />
           </Link>
         </div>
         <div className='nav-links'>
@@ -26,11 +26,11 @@ function Navbar() {
         </div>
         <div className='nav-actions'>
           <input type="text" className='searchbox' placeholder="Search the store" />
-          <img src="search.svg" alt="search" className="icon-s" />
+          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399237/search_m4jbxm.svg" alt="search" className="icon-s" />
           <Link to="/account">
             
           
-          <img src="account.svg" alt="user" className="icon" />
+          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399212/account_urpfmt.svg" alt="user" className="icon" />
           </Link>
           <CartIcon/>
         </div>

@@ -13,19 +13,19 @@ function CarouselSection() {
         interval={3000}
       >
         <div>
-          <img src="frame3.webp" alt="Slide 1" />
+          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399226/frame3_si9kby.webp" alt="Slide 1" />
           
         </div>
         <div>
-          <img src="frame4.webp" alt="Slide 2" />
+          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399229/frame4_j9myuq.webp" alt="Slide 2" />
          
         </div>
         <div>
-          <img src="Frame1.png" alt="Slide 3" />
+          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399219/Frame1_fxovko.png" alt="Slide 3" />
           
         </div>
         <div>
-          <img src="frame2.webp" alt="Slide 4" />
+          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399222/frame2_gtl1hf.webp" alt="Slide 4" />
           
         </div>
       </Carousel>

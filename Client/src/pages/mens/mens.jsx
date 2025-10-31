@@ -1,223 +1,109 @@
-import './mens.css'
-import React,{useState} from 'react';
-import {useCart} from '../../components/CartProvider';
+import './mens.css';
+import React, { useState, useEffect } from 'react';
+import { useCart } from '../../components/CartProvider';
+import { Link } from 'react-router-dom';
 
+function Mens() {
+  const { addToCart } = useCart();
+  const [products, setProducts] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-function mens() {
-  const {addToCart} = useCart();
-  const [selectedSizes,setSelectedSizes] = useState({});
+  // 🧠 Fetch men's products from backend API
+  useEffect(() => {
+    const fetchMensProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/products?category=mens');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleSizeSelect =(productId,size) => {
+    fetchMensProducts();
+  }, []);
+
+  // 🧩 Handle selecting a size
+  const handleSizeSelect = (productId, size) => {
     setSelectedSizes(prev => ({
       ...prev,
-      [productId] : size
+      [productId]: size,
     }));
   };
 
-  const handleAddToCart =(product) => {
-    const selectedSize = selectedSizes[product.id];
-    if (!selectedSize){
-      alert('Please Select A Size Before Adding To Cart');
+  // 🛒 Handle adding to cart
+  const handleAddToCart = (product) => {
+    const selectedSize = selectedSizes[product._id];
+    if (!selectedSize) {
+      alert('Please select a size before adding to cart');
       return;
     }
     addToCart({
       ...product,
-      selectedSize
+      selectedSize,
     });
   };
 
-  
-  const products = [
-  {
-    id:1,
-    name:'Brown pants',
-    price:'Rs 3,500.00',
-    sizes:['28','30','32','34','36','38'],
-    mainImg:'/men products/2.jpg',
-    hoverImg:'/men products/2-2.jpg',
-  },
-  {
-    id:2,
-    name:'Ash pants',
-    price:'Rs 5,500.00',
-    sizes:['28','30','32','34'],
-    mainImg:'/men products/4.jpg',
-    hoverImg:'/men products/4-2.jpg',
-  },
-  {
-    id:3,
-    name:'Navy blue pants',
-    price:'Rs 3,500.00',
-    sizes:['28','30','32','34','36','38'],
-    mainImg:'/men products/5.jpg',
-    hoverImg:'/men products/5-2.jpg',
-  },
-  {
-    id:4,
-    name:'Black pants',
-    price:'Rs 5,200.00',
-    sizes:['28','30','32','34','36'],
-    mainImg:'/men products/10.jpg',
-    hoverImg:'/men products/10-2.jpg',
+  // ⏳ Loading or error states
+  if (loading) {
+    return <div>Loading men's products...</div>;
   }
-  ,{
-    id:5,
-    name:'Green t shirt',
-    price:'Rs 3,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/mens/1-1.jpg',
-    hoverImg:'/mens/1.jpg',
-  },
-  {
-    id:6,
-    name:'Blue check shirt',
-    price:'Rs 5,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/mens/2-1.jpg',
-    hoverImg:'/mens/2.jpg',
-  },
-  {
-    id:7,
-    name:'Merron t shirt',
-    price:'Rs 3,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/mens/4-1.jpg',
-    hoverImg:'/mens/4.jpg',
-  },
-  {
-    id:8,
-    name:'Black shirt',
-    price:'Rs 5,200.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/7.jpg',
-    hoverImg:'/men products/7-2.jpg',
-  },{
-    id:9,
-    name:'White shirt',
-    price:'Rs 3,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/6-2.jpg',
-    hoverImg:'/men products/6.jpg',
-  },
-  {
-    id:10,
-    name:'Ash shirt',
-    price:'Rs 5,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/12.jpg',
-    hoverImg:'/men products/12-1.jpg',
-  },
-  {
-    id:11,
-    name:'Blue denim',
-    price:'Rs 3,500.00',
-    sizes:['28','30','32','34','36','38'],
-    mainImg:'/men products/11-2.jpg',
-    hoverImg:'/men products/11.jpg',
-  },
-  {
-    id:12,
-    name:'Ash denim',
-    price:'Rs 5,200.00',
-    sizes:['28','30','32','34','36'],
-    mainImg:'/men products/15.jpg',
-    hoverImg:'/men products/15-1.jpg',
-  },
-  {
-    id:13,
-    name:'Blue t shirt',
-    price:'Rs 3,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/14.jpg',
-    hoverImg:'/men products/14-1.jpg',
-  },
-  {
-    id:14,
-    name:'Blue flower shirt',
-    price:'Rs 5,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/16-1.jpg',
-    hoverImg:'/men products/16.jpg',
-  },
-    {
-    id:15,
-    name:'White t shirt', 
-    price:'Rs 3,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/3.jpg',
-    hoverImg:'/men products/3-2.jpg',
-    },
-  {
-    id:16,
-    name:'Red check shirt',
-    price:'Rs 5,500.00',
-    sizes:['XS','S','M','L','XL','XXL'],
-    mainImg:'/men products/13.jpg',
-    hoverImg:'/men products/13-1.jpg',
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
-  
-  ]
 
-
-
+  // 🧱 Render products
   return (
-   
     <>
-     <div className='p-title'>
-      <h2>Men's Wear</h2>
+      <div className='p-title'>
+        <h2>Men's Wear</h2>
       </div>
-    <div className='mens-container'>
-     
-      {products.map((product) =>(
-        <div key={product.id} className='product-card'>
-          <div className='image-wrapper'>
-            <img 
-            src={product.mainImg}
-             alt={product.name} />
 
-             <img 
-             src={product.hoverImg} 
-             alt={product.name+"hover"} />
+      <div className='mens-container'>
+        {products.map((product) => (
+          <div key={product._id} className='product-card'>
+            <Link to={`/product/mens/${product._id}`} className='image-wrapper'>
+              <img src={product.mainImg} alt={product.name} />
+              <img src={product.hoverImg} alt={product.name + ' hover'} />
 
-            <button 
-            className="add-to-cart"
-            onClick={() =>handleAddToCart(product)}
-            >
-              Add to Cart
-            </button>
+              <button
+                className='add-to-cart'
+                onClick={(e) => {
+                  e.preventDefault(); // prevent link navigation when clicking "Add to Cart"
+                  handleAddToCart(product);
+                }}
+              >
+                Add to Cart
+              </button>
+            </Link>
 
-          </div>
-          <p className='product-name'>{product.name}</p>
-          <p className='product-price'>{product.price}</p>
-          <div className='size-options'>
-            {product.sizes.map((size,index)=> (
+            <p className='product-name'>{product.name}</p>
+            <p className='product-price'>{product.price}</p>
+
+            <div className='size-options'>
+              {product.sizes && product.sizes.map((size, index) => (
                 <span
-                 key={index}
-                 className={`size ${selectedSizes[product.id] === size ? 'selected' : ''}`}
-                 onClick ={() => handleSizeSelect(product.id,size)}
-                 >
-                  {size}</span>
-            ))}
-
+                  key={index}
+                  className={`size ${selectedSizes[product._id] === size ? 'selected' : ''}`}
+                  onClick={() => handleSizeSelect(product._id, size)}
+                >
+                  {size}
+                </span>
+              ))}
+            </div>
           </div>
-
-        </div>
-      ))}
-
-
-
-
-    </div>
-
-  
-    
-    
-    
-    
-    
-    
+        ))}
+      </div>
     </>
-    
-  )
+  );
 }
-export default mens
+
+export default Mens;

@@ -1,9 +1,8 @@
 .content {
   font-size: 18px;
   opacity: 90%;
-   
-    margin-left: 20px;
-    margin-bottom: 20px;
+   margin-left: 20px;
+  margin-bottom: 20px;
   
 
 }
@@ -91,7 +90,6 @@
 .add-to-cart {
    position: absolute;
   bottom: 2px;
-
   transform: translateX(-50%);
   background-color: hsl(0, 12%, 93%);
   color: #070606;

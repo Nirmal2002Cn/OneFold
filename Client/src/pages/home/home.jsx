@@ -5,7 +5,7 @@ import './home.css';
 import NAwomens from '../../components/New Arrivals/NAwomens';
 import Womens from '../../components/womens wear/hWomens';
 import Mens from '../../components/mensWear/men';
-
+import { Link } from 'react-router-dom';
 
  
 
@@ -23,17 +23,20 @@ function Home() {
   {/* Row 1 */}
   <div className='row'>
     <div className='category-card'>
-      <img className='img-womens' src='/home images/bluegirl.jpg' alt='WOMENS' />
+      <img className='img-womens' src='https://res.cloudinary.com/ddqdolyqw/image/upload/v1761464922/Screenshot_2025-10-26_131811_iubi67.png' alt='WOMENS' />
       <div className='overlay'>
-        <button>SHOP NOW</button>
+        
+        <Link to='/women'><button>SHOP NOW</button></Link>
         <h2>WOMENS</h2>
       </div>
     </div>
 
     <div className='category-card'>
-      <img className='img-mens' src='/home images/bluemen.jpg' alt='MENS' />
+      <img className='img-mens' src='https://res.cloudinary.com/ddqdolyqw/image/upload/v1761397572/bluemen_y2rql5.jpg' alt='MENS' />
       <div className='overlay'>
+        <Link to="/men">
         <button>SHOP NOW</button>
+        </Link>
         <h2>MENS</h2>
       </div>
     </div>
@@ -42,17 +45,21 @@ function Home() {
   {/* Row 2 */}
   <div className='row'>
     <div className='category-card'>
-      <img className='img-kids' src='/home images/kids.jpg' alt='KIDS' />
+      <img className='img-kids' src='https://res.cloudinary.com/ddqdolyqw/image/upload/v1761464851/Screenshot_2025-10-26_131609_s1noqc.png' alt='KIDS' />
       <div className='overlay'>
+        <Link to="/kids">
         <button>SHOP NOW</button>
+        </Link>
         <h2>KIDS</h2>
       </div>
     </div>
 
     <div className='category-card'>
-      <img className='img-mom' src='/home images/mom.jpg' alt='MOTHER & BABY' />
+      <img className='img-mom' src='https://res.cloudinary.com/ddqdolyqw/image/upload/v1761397573/mom_iks83r.jpg' alt='MOTHER & BABY' />
       <div className='overlay'>
+        <Link to="/mother-baby">
         <button>SHOP NOW</button>
+        </Link>
         <h2>MOTHER & BABY</h2>
       </div>
     </div>
@@ -61,9 +68,11 @@ function Home() {
   {/* Row 3 */}
   <div className='row'>
     <div className='category-card'>
-      <img className='img-home' src='/home images/homecloths.jpg' alt='HOME & LIFESTYLE' />
+      <img className='img-home' src='https://res.cloudinary.com/ddqdolyqw/image/upload/v1761397572/homecloths_tv6cec.jpg' alt='HOME & LIFESTYLE' />
       <div className='overlay'>
+        <Link to="home-living">
         <button>SHOP NOW</button>
+        </Link>
         <h2>HOME & LIFESTYLE</h2>
       </div>
     </div>

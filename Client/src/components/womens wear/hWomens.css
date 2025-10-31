@@ -91,7 +91,6 @@
 .add-to-cart {
    position: absolute;
   bottom: 2px;
-
   transform: translateX(-50%);
   background-color: hsl(0, 12%, 93%);
   color: #070606;

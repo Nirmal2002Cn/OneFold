@@ -13,6 +13,7 @@ import Party from './pages/party/party';
 import Footer from './components/footer/footer';
 import {CartProvider} from './components/CartProvider';
 import CartPage from './components/CartPage';
+import ProductDetail from './pages/productDetail/ProductDetail';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
         <Route path="/party" element={<Party />} />
         <Route path="/account" element={<Account />} />
         <Route path='/cart' element={<CartPage/>}/>
+        <Route path='/product/:category/:id' element={<ProductDetail />} /> {/* 🧠 Dynamic page */}
+        
       </Routes>
       <Footer />
 
