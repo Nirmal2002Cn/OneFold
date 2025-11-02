@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './navbar.css';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import CartIcon from '../CartIcon';
 
-
 function Navbar() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${searchTerm}`);
+      setSearchTerm('');
+    }
+  };
+
   return (
     <div className='navbar-wrapper'>
       <div className='promo-banner'>
         Sign up and get 10% off your first order
       </div>
+
       <div className='navbar'>
         <div className='logo'>
           <Link to="/">
-            <img className='onefold' src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399233/logo_wyeh36.png" alt="logo" />
+            <img
+              className='onefold'
+              src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399233/logo_wyeh36.png"
+              alt="logo"
+            />
           </Link>
         </div>
+
         <div className='nav-links'>
           <Link to="/women">WOMEN</Link>
           <Link to="/men">MEN</Link>
@@ -24,15 +40,43 @@ function Navbar() {
           <Link to="/mother-baby">MOTHER & BABY</Link>
           <Link to="/party">PARTY</Link>
         </div>
+
         <div className='nav-actions'>
-          <input type="text" className='searchbox' placeholder="Search the store" />
-          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399237/search_m4jbxm.svg" alt="search" className="icon-s" />
+          <form className='search-form' onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              className='searchbox'
+              placeholder="Search the store"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button type='submit' className='search-button'>
+               <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="black"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="icon-s"
+                      >
+                        <circle cx="8" cy="8" r="6"></circle>
+                        <line x1="14" y1="14" x2="11.5" y2="11.5"></line>
+                      </svg>
+            </button>
+          </form>
+
           <Link to="/account">
-            
-          
-          <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399212/account_urpfmt.svg" alt="user" className="icon" />
+            <img
+              src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399212/account_urpfmt.svg"
+              alt="user"
+              className="icon"
+            />
           </Link>
-          <CartIcon/>
+
+          <CartIcon />
         </div>
       </div>
     </div>

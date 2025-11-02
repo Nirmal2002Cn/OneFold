@@ -1,120 +1,130 @@
-import React,{useEffect,useState} from "react";
-import {useParams} from 'react-router-dom';
-import{
-    kidsProducts,
-    mensProducts,
-    womenProducts,
-    babyProducts,
-    homeProducts,
-    partyProducts,
-    mensWear,
-    NAwomens,
-    Hwomens,
-} from '../../data/Products';
-import './ProductDetails.css';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "./ProductDetails.css";
 
-const categoryMap ={
-    kids:kidsProducts,
-    mens: mensProducts,
-    women: womenProducts,
-    baby: babyProducts,
-    home: homeProducts,
-    party: partyProducts,
-    mensWearProducts: mensWear,
-    newArrivals:NAwomens,
-    hWomensProduct:Hwomens,
-}
+const ProductDetail = () => {
+  const { id } = useParams(); // only get id from route
+  const [product, setProduct] = useState(null);
+  const [mainImage, setMainImage] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const ProductDetail =() => {
-    const {category,id} =useParams();
-    const [product,setProduct] = useState(null);
-    const [quantity,setQuantity] = useState(1);
-    const [selectedSize,setSelectedSize] = useState(null);
-    const [mainImage,setMainImage] = useState(null);
-   
-    
-    useEffect(()=> {
-        const selectedProducts =categoryMap[category];
-        if (selectedProducts){
-            const foundProduct = selectedProducts.find((p) => p.id.toString() === id);
-            setProduct(foundProduct);
-            setMainImage(foundProduct?.mainImg || foundProduct?.images?.[0] || null);
-        }else{
-            setProduct(null);
-             // If category not found, set product to null
+  // ✅ Fetch product data by ID
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`http://localhost:5000/api/products/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch product data");
         }
-    },[category,id]);
-
-    if (!product) return <h2 className="not-found">Product Not Found</h2>;
-
-    const handleQuantityChange = (value) => {
-        if (value < 1) return; // Prevent quantity from going below 1
-        setQuantity(value);
+        const data = await response.json();
+        setProduct(data);
+        // create a fallback thumbnail list
+        const thumbs = [data.mainImg, data.hoverImg].filter(Boolean);
+        setMainImage(data.mainImg || thumbs[0] || null);
+      } catch (err) {
+        console.error("Error fetching product:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
+    fetchProduct();
+  }, [id]);
 
-    return(
-        <div className="product-detail-container">
-            <div className="image-section">
-                {mainImage && (
-                <img src={mainImage} alt={product.name} className="main-image" />
-                )}
-                <div className="thubnail-gallery">
-                    {product.images?.map((img,index) => (
-                        <img
-                            key={index}
-                            src={img}
-                            alt='thumbnail'
-                            className={`thumbnail ${mainImage === img ? 'active' : ""}`}
-                            />
-                    ))}
-                </div>
-            </div>
+  // ✅ Loading / Error handling
+  if (loading) return <h2 className="loading">Loading product details...</h2>;
+  if (error) return <h2 className="error">Error: {error}</h2>;
+  if (!product) return <h2 className="not-found">Product Not Found</h2>;
 
-            <div className="details-section">
-                <h2>{product.name}</h2>
-                <p className="price">Rs. {product.price}</p>
-                <p className="stock-warning">Please hurry! Only {product.stock} left in stock</p>
-                <div className="size-selector">
-                    <p><strong>Size:</strong></p>
-                    {['S', 'M', 'L', 'XL'].map((size) => (
-                        <button
-                            key={size}
-                            onClick={() => setSelectedSize(size)}
-                            className={`size-button ${selectedSize === size ? 'selected' : ''}`}
-                            >
-                            {size}
-                            </button>
-                    ))}
-                </div>
+  // ✅ Quantity controls
+  const handleQuantityChange = (value) => {
+    if (value < 1) return;
+    setQuantity(value);
+  };
 
-                <div className="quantity-selector">
-                    <p><strong>Quantity:</strong></p>
-                    <button onClick={()=> handleQuantityChange(quantity -1)}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={()=> handleQuantityChange(quantity + 1)}>+</button>
+  // ✅ Thumbnail click
+  const handleThumbnailClick = (img) => {
+    setMainImage(img);
+  };
 
-                </div>
+  // ✅ Handle size select
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
 
-                <div className="action-buttons">
-                    <button className="add-to-cart">ADD TO CART</button>
-                    <button className="buy-now">BUY IT NOW</button>
+  // ✅ Create simple thumbnail list
+  const thumbnails = [product.mainImg, product.hoverImg].filter(Boolean);
 
-                </div>
-
-                 <ul className="extra-info">
-                        <li>✔️ Cash On Delivery</li>
-                        <li>✔️ Exchange From Physical Outlets</li>
-                        <li>✔️ Delivery Within 2 - 3 Business Days</li>
-                  </ul>
-
-
-
-            </div>
-            
-           
-
+  return (
+    <div className="product-detail-container">
+      {/* --- Image Section --- */}
+      <div className="image-section">
+        {mainImage && (
+          <img src={mainImage} alt={product.name} className="main-image" />
+        )}
+        <div className="thumbnail-gallery">
+          {thumbnails.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt="thumbnail"
+              onClick={() => handleThumbnailClick(img)}
+              className={`thumbnail ${mainImage === img ? "active" : ""}`}
+            />
+          ))}
         </div>
-    );
+      </div>
+
+      {/* --- Details Section --- */}
+      <div className="details-section">
+        <h2>{product.name}</h2>
+        <p className="price">Rs. {product.price}</p>
+
+        {/* Sizes */}
+        {product.sizes && product.sizes.length > 0 && (
+          <div className="size-selector">
+            <p><strong>Size:</strong></p>
+            {product.sizes.map((size) => (
+              <button
+                key={size}
+                onClick={() => handleSizeSelect(size)}
+                className={`size-button ${
+                  selectedSize === size ? "selected" : ""
+                }`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Quantity */}
+        <div className="quantity-selector">
+          <p><strong>Quantity:</strong></p>
+          <button onClick={() => handleQuantityChange(quantity - 1)}>-</button>
+          <span>{quantity}</span>
+          <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
+        </div>
+
+        {/* Action buttons */}
+        <div className="action-buttons">
+          <button className="add-to-cart">ADD TO CART</button>
+          <button className="buy-now">BUY IT NOW</button>
+        </div>
+
+        {/* Extra info */}
+        <ul className="extra-info">
+          <li>✔️ Cash On Delivery</li>
+          <li>✔️ Exchange From Physical Outlets</li>
+          <li>✔️ Delivery Within 2 - 3 Business Days</li>
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetail;

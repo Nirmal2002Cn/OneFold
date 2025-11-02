@@ -14,6 +14,8 @@ import Footer from './components/footer/footer';
 import {CartProvider} from './components/CartProvider';
 import CartPage from './components/CartPage';
 import ProductDetail from './pages/productDetail/ProductDetail';
+// 1. IMPORT YOUR NEW SEARCHRESULTS COMPONENT
+import SearchResults from './pages/SearchResults'; // <-- Add this line (adjust path if needed)
 
 function App() {
   return (
@@ -31,12 +33,17 @@ function App() {
         <Route path="/party" element={<Party />} />
         <Route path="/account" element={<Account />} />
         <Route path='/cart' element={<CartPage/>}/>
-        <Route path='/product/:category/:id' element={<ProductDetail />} /> {/* 🧠 Dynamic page */}
+        
+        {/* 2. ADD THE NEW SEARCH ROUTE */}
+        <Route path="/search" element={<SearchResults />} /> {/* <-- Add this route */}
+
+        {/* 3. FIX THE PRODUCT DETAIL ROUTE (remove :category) */}
+        <Route path='/product/:id' element={<ProductDetail />} /> {/* <-- This is the corrected route */}
         
       </Routes>
       <Footer />
 
-   </CartProvider>
+    </CartProvider>
     </Router>
   );
 }

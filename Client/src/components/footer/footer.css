@@ -1,21 +1,27 @@
 .footer {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: #f2f0f6; /* matches navbar tone */
+  color: #222;
   font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
 }
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.5rem 1rem;
+  padding: 3rem 1.5rem;
 }
 
 .footer-section h3 {
- 
+  font-size: 14px;
+  font-weight: 600;
   margin-bottom: 1rem;
+  color: #000;
+  letter-spacing: 0.5px;
 }
 
 .footer-section ul {
@@ -24,40 +30,77 @@
 }
 
 .footer-section ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li:hover {
+  color: #000;
+  text-decoration: underline;
 }
 
 .footer-section.newsletter p {
   margin-bottom: 1rem;
-  color: #ccc;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
+/* Newsletter input & button */
 .newsletter-form {
   display: flex;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  overflow: hidden;
+  max-width: 280px;
 }
 
 .newsletter-form input {
   flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #444;
-  border-right: none;
-  background-color: #333;
-  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  background-color: transparent;
+  font-size: 13px;
+  outline: none;
 }
 
 .newsletter-form button {
-  padding: 0.5rem 1rem;
-  background-color: white;
-  color: black;
+  padding: 0.6rem 1.2rem;
+  background-color: #000;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+  border-radius: 0 25px 25px 0;
+  transition: all 0.3s ease;
 }
 
+.newsletter-form button:hover {
+  background-color: #333;
+  letter-spacing: 0.5px;
+}
+
+/* Bottom bar */
 .footer-bottom {
-  background-color: #2d2d2d;
+  background-color: #eae7f1;
   text-align: center;
   padding: 1rem;
-  color: #aaa;
-  font-size:14px ;
+  color: #555;
+  font-size: 13px;
+  border-top: 1px solid #ccc;
+  letter-spacing: 0.3px;
+}
+.f-submit{
+  padding: 0.6rem 1.2rem;
+  background-color: #000;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 25px 25px 0;
+  transition: all 0.3s ease;
 }

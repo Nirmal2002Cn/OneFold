@@ -8,11 +8,18 @@ const Product = require('../models/product.model');
 // GET /api/products?category=mens
 router.get('/', async (req, res) => {
   try {
-    const category = req.query.category;
+    //Get both category and search from query parameters
+    const {category, search }= req.query;
 
     let query = {};
+
     if (category) {
       query.category = category.toLowerCase();
+    }
+
+    // Search Logic
+    if (search) {
+      query.name = { $regex: search, $options:'i'} // Case-insensitive search
     }
 
     const products = await Product.find(query);
