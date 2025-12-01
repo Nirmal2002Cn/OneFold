@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import './navbar.css';
 import { Link, useNavigate } from 'react-router-dom'; 
 import CartIcon from '../CartIcon';
+import {useAuth} from '../../context/AuthContext';
 
 function Navbar() {
+  const{user,logout} =useAuth();
+
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  }
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -68,13 +76,31 @@ function Navbar() {
             </button>
           </form>
 
-          <Link to="/account">
-            <img
-              src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399212/account_urpfmt.svg"
-              alt="user"
-              className="icon"
-            />
-          </Link>
+
+          {
+            user ?(
+              //User is Logged In
+              <>
+                {user.role === 'admin' && (
+                  <Link to='/admin' className='nav-admin-link'>
+                    Admin
+                  </Link>
+                )}
+                <button onClick={handleLogout} className='nav-logout-button'>
+                  Logout
+                </button>
+              </>
+            
+            ) : (
+              //User is Logged Out
+              <Link to="/account">
+                <img src="https://res.cloudinary.com/ddqdolyqw/image/upload/v1761399212/account_urpfmt.svg" alt="user" className="icon" />
+              </Link>
+
+            )
+          }
+
+         
 
           <CartIcon />
         </div>

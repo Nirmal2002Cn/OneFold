@@ -40,3 +40,45 @@
 .add-to-cart-baby{
   
 }
+.loading-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  text-align: center;
+  background: #fafafa;
+}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top-color:#333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+@keyframes spin {
+  to {
+    transform:rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 18px;
+  color: #555;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  animation: fadeIn 1.5s ease-in-out infinite alternate;
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity:0.4;
+
+  }
+  to {
+    opacity: 1;
+  }
+}

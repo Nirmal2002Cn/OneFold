@@ -31,7 +31,14 @@ function Living() {
     addToCart(product);
   };
 
-  if (loading) return <div className="loading">Loading Products...</div>;
+   if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p className='loading-text'>Loading Home & Living Products...</p>
+      </div>
+    )
+  }
   if (error) return <div className="error">Error: {error}</div>;
 
   return (

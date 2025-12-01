@@ -48,7 +48,14 @@ function Womens() {
   };
 
   // ⏳ Loading & Error states
-  if (loading) return <div className="loading">Loading products...</div>;
+   if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p className='loading-text'>Loading Women's Products...</p>
+      </div>
+    )
+  }
   if (error) return <div className="error">Error: {error}</div>;
 
   // 🧱 Render product grid

@@ -55,7 +55,12 @@ function Mens() {
 
   // Loading and error states
   if (loading) {
-    return <div className="loading">Loading products...</div>;
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p className='loading-text'>Loading Men's Products...</p>
+      </div>
+    )
   }
 
   if (error) {

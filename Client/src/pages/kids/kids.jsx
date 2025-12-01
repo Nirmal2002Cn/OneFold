@@ -36,7 +36,14 @@ function Kids() {
   };
 
   // ⏳ Loading & error handling
-  if (loading) return <div className="loading">Loading products...</div>;
+ if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p className='loading-text'>Loading Kid's Products...</p>
+      </div>
+    )
+  }
   if (error) return <div className="error">Error: {error}</div>;
 
   // 🧱 Render the products

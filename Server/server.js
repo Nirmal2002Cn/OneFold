@@ -5,6 +5,9 @@ require('dotenv').config(); // Loads variables from .env file
 
 // Import product routes
 const productRoutes =require('./routes/product.routes');
+//import auth routes
+const authRoutes = require('./routes/auth.routes');
+const orderRoutes = require('./routes/order.routes');
 
 //App initialization
 const app = express();
@@ -15,8 +18,13 @@ app.use(cors()); // Enable Cross-Origin Resource Sharing
 app.use(express.json()); // Allow server to accept JSON data
 
 
+
 //Route Handling
 app.use('/api/products', productRoutes);
+//tell app to use auth routes
+app.use('/api/auth', authRoutes);
+
+app.use('/api/orders', orderRoutes);
 
 //Database connection
 

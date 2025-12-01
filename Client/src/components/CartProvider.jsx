@@ -24,18 +24,21 @@ export function CartProvider({ children }) {
 
     // Calculate total price from cart items
     const getTotal = () => {
-        return cartItems.reduce((sum, item) => {
-            if (!item.price || typeof item.price !== 'string') return sum;
+        return cartItems.reduce((sum,item) => {
+            return sum + (item.price || 0);
+        },0)
+    }
 
-            // Remove "Rs", commas and spaces, but keep decimal point
-            const cleaned = item.price.replace(/[^0-9.]/g, '');
-            const price = parseFloat(cleaned);
-            return sum + (isNaN(price) ? 0 : price);
-        }, 0);
-    };
+    const clearCart = () => {
+        setCartItems([]);
+    }
+
+
+
+
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, getTotal }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, getTotal,clearCart }}>
             {children}
         </CartContext.Provider>
     );

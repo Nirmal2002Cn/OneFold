@@ -136,6 +136,25 @@
 .icon:hover {
   opacity: 0.8;
 }
+/* Add this to navbar.css */
+.nav-admin-link,
+.nav-logout-button {
+  text-decoration: none;
+  font-family: inherit;
+  color: #000;
+  font-weight: 500;
+  font-size: 14px; /* Adjust to match your other links */
+  letter-spacing: 1.5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.nav-admin-link:hover,
+.nav-logout-button:hover {
+  text-decoration: underline;
+}
 
 /* =============================
    Responsive Adjustments
@@ -166,4 +185,5 @@
   .promo-banner {
     font-size: 12px;
   }
+  
 }

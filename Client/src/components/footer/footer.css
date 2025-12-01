@@ -1,106 +1,115 @@
+/* ----------------------- FOOTER MAIN ----------------------- */
 .footer {
-  background-color: #f2f0f6; /* matches navbar tone */
-  color: #222;
-  font-size: 14px;
+  background: #f4f2f6;
+  padding: 60px 40px;
   font-family: "Poppins", sans-serif;
-  border-top: 1px solid #ddd;
-  margin-top: 40px;
+  color: #000;
+  border-top: 1px solid #e0e0e0;
 }
 
 .footer-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
+  gap: 40px;
+  max-width: 1400px;
+  margin: auto;
 }
 
+/* ----------------------- HEADINGS ----------------------- */
 .footer-section h3 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #000;
-  letter-spacing: 0.5px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
+/* ----------------------- LISTS ----------------------- */
 .footer-section ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .footer-section ul li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
   color: #444;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  font-size: 14px;
+  transition: 0.3s ease;
 }
 
-.footer-section ul li:hover {
+.footer-section ul li a:hover {
   color: #000;
-  text-decoration: underline;
+  padding-left: 2px;
 }
 
-.footer-section.newsletter p {
-  margin-bottom: 1rem;
-  color: #555;
-  font-size: 13px;
-  line-height: 1.4;
+/* ----------------------- NEWSLETTER ----------------------- */
+.newsletter p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 15px;
+  max-width: 280px;
 }
 
-/* Newsletter input & button */
+/* Newsletter Form */
 .newsletter-form {
   display: flex;
-  border: 1px solid #ccc;
-  border-radius: 25px;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+  background: #fff;
+  border-radius: 30px;
   overflow: hidden;
-  max-width: 280px;
+  border: 1px solid #ddd;
 }
 
 .newsletter-form input {
   flex: 1;
-  padding: 0.6rem 1rem;
+  padding: 12px 18px;
   border: none;
-  background-color: transparent;
-  font-size: 13px;
   outline: none;
+  font-size: 14px;
+  background: transparent;
 }
 
-.newsletter-form button {
-  padding: 0.6rem 1.2rem;
-  background-color: #000;
-  color: white;
-  font-size: 13px;
-  font-weight: 500;
+.newsletter-submit {
+  padding: 12px 20px;
+  background: #000;
+  color: #fff;
   border: none;
+  outline: none;
   cursor: pointer;
-  border-radius: 0 25px 25px 0;
-  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 30px 30px 0;
+  transition: 0.3s;
 }
 
-.newsletter-form button:hover {
-  background-color: #333;
-  letter-spacing: 0.5px;
+.newsletter-submit:hover {
+  background: #333;
 }
 
-/* Bottom bar */
+/* ----------------------- FOOTER BOTTOM ----------------------- */
 .footer-bottom {
-  background-color: #eae7f1;
   text-align: center;
-  padding: 1rem;
+  padding: 20px 0 10px;
+  margin-top: 40px;
+  font-size: 13px;
   color: #555;
-  font-size: 13px;
-  border-top: 1px solid #ccc;
-  letter-spacing: 0.3px;
+  border-top: 1px solid #ddd;
 }
-.f-submit{
-  padding: 0.6rem 1.2rem;
-  background-color: #000;
-  color: white;
-  font-size: 13px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  border-radius: 0 25px 25px 0;
-  transition: all 0.3s ease;
+
+/* ----------------------- RESPONSIVE ----------------------- */
+@media (max-width: 600px) {
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .newsletter-form {
+    max-width: 100%;
+  }
 }
