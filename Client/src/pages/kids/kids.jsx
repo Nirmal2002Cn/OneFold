@@ -1,10 +1,10 @@
 import './kids.css';
 import React, { useState, useEffect } from 'react';
-import { useCart } from '../../components/CartProvider';
+
 import { Link } from 'react-router-dom';
 
 function Kids() {
-  const { addToCart } = useCart();
+
 
   // 🧠 State variables
   const [products, setProducts] = useState([]);
@@ -29,11 +29,7 @@ function Kids() {
     fetchKidsProducts();
   }, []);
 
-  // 🛒 Add product to cart
-  const handleAddToCart = (e, product) => {
-    e.preventDefault(); // Prevents Link navigation when clicking the button
-    addToCart(product);
-  };
+
 
   // ⏳ Loading & error handling
  if (loading) {
@@ -60,12 +56,7 @@ function Kids() {
               <img src={product.mainImg} alt={product.name} />
               <img src={product.hoverImg} alt={`${product.name} hover`} />
 
-              <button
-                className="add-to-cart"
-                onClick={(e) => handleAddToCart(e, product)}
-              >
-                Add to Cart
-              </button>
+             
             </Link>
 
             <p className="product-name">{product.name}</p>

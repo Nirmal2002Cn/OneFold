@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './party.css';
-import { useCart } from '../../components/CartProvider';
 import { Link } from 'react-router-dom';
 
 function Party() {
-  const { addToCart } = useCart();
+ 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,9 +25,7 @@ function Party() {
     fetchPartyProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
-  };
+ 
 
    if (loading) {
     return (
@@ -53,12 +50,7 @@ function Party() {
               <img src={product.mainImg} alt={product.name} />
               <img src={product.hoverImg} alt={`${product.name} hover`} />
 
-              <button
-                className="add-to-cart"
-                onClick={() => handleAddToCart(product)}
-              >
-                Add to Cart
-              </button>
+              
             </Link>
 
             <p className="product-name">{product.name}</p>

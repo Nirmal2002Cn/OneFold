@@ -145,7 +145,7 @@ const ProductDetail = () => {
 
         {/* Action buttons */}
         <div className="action-buttons">
-          <button className="add-to-cart" onClick={handleAddToCart}>
+          <button className="pd-add-to-cart" onClick={handleAddToCart}>
             ADD TO CART
           </button>
           <button className="buy-now" onClick={handleBuyNow}>

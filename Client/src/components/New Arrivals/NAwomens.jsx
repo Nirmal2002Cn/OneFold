@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './NAwomens.css';
-import { useCart } from '../../components/CartProvider';
 import { Link } from 'react-router-dom';
 
-function NAwomens() {
-  const { addToCart } = useCart();
 
-  // State variables
+function NAwomens() {
+
+
   const [newArrivals, setNewArrivals] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -32,28 +30,6 @@ function NAwomens() {
     fetchNewArrivals();
   }, []);
 
-  // Handle size select
-  const handleSizeSelect = (productId, size) => {
-    setSelectedSizes((prev) => ({
-      ...prev,
-      [productId]: size,
-    }));
-  };
-
-  // Handle add to cart
-  const handleAddToCart = (product) => {
-    const selectedSize = selectedSizes[product._id];
-    if (!selectedSize) {
-      alert('Please select a size before adding to cart');
-      return;
-    }
-
-    addToCart({
-      ...product,
-      selectedSize,
-    });
-  };
-
   // Handle loading and error
   if (loading) {
     return <div className="loading">Loading products...</div>;
@@ -76,36 +52,21 @@ function NAwomens() {
       </Link>
 
       <div className="product-list">
+        
         {newArrivals.slice(0, 4).map((product) => (
           <div key={product._id} className="product-card">
+            
             <Link to={`/product/newArrivals/${product._id}`} className="image-wrapper">
               <img className="main-img" src={product.mainImg} alt={product.name} />
               <img className="hover-img" src={product.hoverImg} alt={`${product.name} hover`} />
-              <button
-                className="add-to-cart"
-                onClick={(e) => {
-                  e.preventDefault(); // prevent link navigation
-                  handleAddToCart(product);
-                }}
-              >
-                Add to Cart
-              </button>
+              
             </Link>
 
             <p className="product-name">{product.name}</p>
             <p className="product-price">Rs. {product.price}</p>
 
-            <div className="size-options">
-              {product.sizes?.map((size, index) => (
-                <span
-                  key={index}
-                  className={`size ${selectedSizes[product._id] === size ? 'selected' : ''}`}
-                  onClick={() => handleSizeSelect(product._id, size)}
-                >
-                  {size}
-                </span>
-              ))}
-            </div>
+          
+            
           </div>
         ))}
       </div>
