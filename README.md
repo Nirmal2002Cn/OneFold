@@ -66,7 +66,7 @@ The following ER diagram illustrates the database structure of the OneFold appli
 
 > Designed using Draw.io – Hybrid referencing & embedding model
 
-![OneFold ER Diagram](https://drive.google.com/uc?export=view\&id=1RCROsakVov1W_oq_J3lY8hpGhn3Bqauv)
+![OneFold ER Diagram]([https://drive.google.com/uc?export=view\&id=1RCROsakVov1W_oq_J3lY8hpGhn3Bqauv](https://drive.google.com/file/d/1RCROsakVov1W_oq_J3lY8hpGhn3Bqauv/view?usp=sharing))
 
 ### Schema Highlights
 
